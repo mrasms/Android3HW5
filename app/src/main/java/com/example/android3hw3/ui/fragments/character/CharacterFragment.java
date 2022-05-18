@@ -25,14 +25,17 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
         return binding.getRoot();
     }
 
+    @Override
     protected void setupViews() {
         binding.characterRecView.setAdapter(characterAdapter);
     }
 
+    @Override
     protected void setupRequest() {
         characterViewModel.getList();
     }
 
+    @Override
     protected void setupObserve() {
         characterViewModel.mutableLiveData.observe(getViewLifecycleOwner(), characterModelRickAndMortyResponse -> {
             characterAdapter.submitList(characterModelRickAndMortyResponse.getResults());
