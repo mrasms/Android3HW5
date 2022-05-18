@@ -29,23 +29,18 @@ public class EpisodeFragment extends BaseFragment<FragmentEpisodeBinding> {
 
     @Override
     protected void setupViews() {
-        super.setupViews();
         binding.characterRecView.setAdapter(episodeAdapter);
     }
 
     @Override
     protected void setupRequest() {
-        super.setupRequest();
         episodeViewModel.getList();
     }
 
     @Override
     protected void setupObserve() {
-        super.setupObserve();
         episodeViewModel.mutableLiveData.observe(getViewLifecycleOwner(), episodeModelRickAndMortyResponse -> {
             episodeAdapter.submitList(episodeModelRickAndMortyResponse.getResults());
         });
     }
-
-
 }
