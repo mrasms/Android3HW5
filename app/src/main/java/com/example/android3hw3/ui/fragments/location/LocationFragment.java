@@ -27,19 +27,16 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
 
     @Override
     protected void setupViews() {
-        super.setupViews();
         binding.characterRecView.setAdapter(locationAdapter);
     }
 
     @Override
     protected void setupRequest() {
-        super.setupRequest();
         locationViewModel.getList();
     }
 
     @Override
     protected void setupObserve() {
-        super.setupObserve();
         locationViewModel.mutableLiveData.observe(getViewLifecycleOwner(), locationModelRickAndMortyResponse -> {
             locationAdapter.submitList(locationModelRickAndMortyResponse.getResults());
         });
