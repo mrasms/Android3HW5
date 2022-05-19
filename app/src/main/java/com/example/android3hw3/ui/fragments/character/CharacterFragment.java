@@ -53,8 +53,13 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
                     totalCount = linearLayoutManager.getItemCount();
                     postVisible = linearLayoutManager.findFirstVisibleItemPosition();
                     if (loading) {
+                        linearLayoutManager.setStackFromEnd(false);
+
                         if ((visibleCount + postVisible) >= totalCount) {
+                            linearLayoutManager.setStackFromEnd(false);
+
                             loading = false;
+
                             characterViewModel.characterPage++;
                             characterViewModel.getList().observe(getViewLifecycleOwner(), new Observer<RickAndMortyResponse<CharacterModel>>() {
                                 @Override
