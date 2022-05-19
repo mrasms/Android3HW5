@@ -15,4 +15,20 @@ public class InfoModel {
 
     @SerializedName("next")
     private String next;
+
+    public int getCount() {
+        return count;
+    }
+
+    public int getPages() {
+        return pages;
+    }
+
+    public String getPrev() {
+        return prev;
+    }
+
+    public String getNext() {
+        return next;
+    }
 }
