@@ -37,7 +37,7 @@ public class EpisodeFragment extends BaseFragment<FragmentEpisodeBinding> {
     private EpisodeAdapter episodeAdapter = new EpisodeAdapter(EpisodeAdapter.diffCallBack);
     private LinearLayoutManager linearLayoutManager;
     private boolean loading = true;
-    private int postVisible, visibleCount, totalCount, episodePage;
+    private int postVisible, visibleCount, totalCount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
