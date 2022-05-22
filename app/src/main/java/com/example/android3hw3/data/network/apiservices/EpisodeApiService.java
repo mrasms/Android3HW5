@@ -5,10 +5,12 @@ import com.example.android3hw3.models.RickAndMortyResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface EpisodeApiService {
 
     @GET("api/episode")
-    Call<RickAndMortyResponse<EpisodeModel>> fetchEpisodes();
-
+    Call<RickAndMortyResponse<EpisodeModel>> fetchEpisodes(
+            @Query("page") int page
+    );
 }
