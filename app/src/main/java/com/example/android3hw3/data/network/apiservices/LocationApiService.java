@@ -6,8 +6,11 @@ import com.example.android3hw3.models.RickAndMortyResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public interface LocationApiService {
     @GET("api/location")
-    Call<RickAndMortyResponse<LocationModel>> fetchLocation();
+    Call<RickAndMortyResponse<LocationModel>> fetchLocation(
+            @Query("page") int page
+    );
 }
