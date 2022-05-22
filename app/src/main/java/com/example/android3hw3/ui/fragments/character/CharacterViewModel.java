@@ -16,8 +16,10 @@ public class CharacterViewModel extends ViewModel {
 
 
     private CharacterRepository characterRepository = new CharacterRepository();
+
     public int characterPage = 1;
-    public MutableLiveData<RickAndMortyResponse<CharacterModel>> getList (){
+
+    public MutableLiveData<RickAndMortyResponse<CharacterModel>> getList() {
         return characterRepository.getList(characterPage);
     }
 
