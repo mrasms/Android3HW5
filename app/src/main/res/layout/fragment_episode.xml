@@ -7,11 +7,12 @@
     tools:context=".ui.fragments.episode.EpisodeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/character_rec_view"
+        android:id="@+id/episode_rec_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="12dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
         tools:listitem="@layout/item_episode" />
 
 </FrameLayout>
