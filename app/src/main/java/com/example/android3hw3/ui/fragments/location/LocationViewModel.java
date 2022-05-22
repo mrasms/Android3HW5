@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.android3hw3.App;
+import com.example.android3hw3.data.repositories.EpisodeRepository;
+import com.example.android3hw3.data.repositories.LocationRepository;
 import com.example.android3hw3.models.EpisodeModel;
 import com.example.android3hw3.models.LocationModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
@@ -15,19 +17,12 @@ import retrofit2.Response;
 
 public class LocationViewModel extends ViewModel {
 
-    public MutableLiveData<RickAndMortyResponse<LocationModel>> mutableLiveData = new MutableLiveData<>();
+    private LocationRepository locationRepository = new LocationRepository();
+    public int locationPage = 1;
 
-    public void getList() {
-        App.locationApiService.fetchLocation().enqueue(new Callback<RickAndMortyResponse<LocationModel>>() {
-            @Override
-            public void onResponse(@NonNull Call<RickAndMortyResponse<LocationModel>> call, @NonNull Response<RickAndMortyResponse<LocationModel>> response) {
-                mutableLiveData.setValue(response.body());
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<RickAndMortyResponse<LocationModel>> call, @NonNull Throwable t) {
-                mutableLiveData.setValue(null);
-            }
-        });
+    public MutableLiveData<RickAndMortyResponse<LocationModel>> getList() {
+        return locationRepository.getList(locationPage);
     }
+
+
 }
