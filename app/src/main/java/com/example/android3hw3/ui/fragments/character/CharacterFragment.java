@@ -87,11 +87,6 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
                             characterAdapter.submitList(list);
                         }
                     }
-
-                        /*list.removeAll(characterModelRickAndMortyResponse.getResults());
-
-                        characterAdapter.submitList(list);*/
-
                 }
             });
         } else
@@ -125,7 +120,6 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
                     ArrayList<CharacterModel> list = new ArrayList<>(characterAdapter.getCurrentList());
                     list.addAll(characterModelRickAndMortyResponse.getResults());
                     Toast.makeText(requireContext(), "totalCount" + totalCount, Toast.LENGTH_SHORT).show();
-
                     characterAdapter.submitList(list);
                     loading = false;
                 }

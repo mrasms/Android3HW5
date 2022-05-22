@@ -36,6 +36,7 @@ public class EpisodeAdapter extends ListAdapter<EpisodeModel, EpisodeAdapter.Vie
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+
         private ItemEpisodeBinding binding;
 
         public ViewHolder(@NonNull ItemEpisodeBinding binding) {

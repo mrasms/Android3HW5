@@ -17,14 +17,14 @@ public class LocationRepository {
         MutableLiveData<RickAndMortyResponse<LocationModel>> mutableLiveData = new MutableLiveData<>();
         App.locationApiService.fetchLocation(page).enqueue(new Callback<RickAndMortyResponse<LocationModel>>() {
             @Override
-            public void onResponse(@NonNull Call<RickAndMortyResponse<LocationModel>> call, @NonNull Response<RickAndMortyResponse<LocationModel>> response) {
+            public void onResponse(Call<RickAndMortyResponse<LocationModel>> call, @NonNull Response<RickAndMortyResponse<LocationModel>> response) {
                 if (response.body() != null) {
                     mutableLiveData.setValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<RickAndMortyResponse<LocationModel>> call, @NonNull Throwable t) {
+            public void onFailure(Call<RickAndMortyResponse<LocationModel>> call, @NonNull Throwable t) {
                 mutableLiveData.setValue(null);
             }
         });

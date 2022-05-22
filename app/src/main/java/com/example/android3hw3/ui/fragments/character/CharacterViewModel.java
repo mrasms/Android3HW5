@@ -14,7 +14,6 @@ import retrofit2.Response;
 
 public class CharacterViewModel extends ViewModel {
 
-
     private CharacterRepository characterRepository = new CharacterRepository();
 
     public int characterPage = 1;

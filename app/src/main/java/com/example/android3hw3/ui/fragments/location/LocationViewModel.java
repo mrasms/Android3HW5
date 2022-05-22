@@ -18,6 +18,7 @@ import retrofit2.Response;
 public class LocationViewModel extends ViewModel {
 
     private LocationRepository locationRepository = new LocationRepository();
+
     public int locationPage = 1;
 
     public MutableLiveData<RickAndMortyResponse<LocationModel>> getList() {

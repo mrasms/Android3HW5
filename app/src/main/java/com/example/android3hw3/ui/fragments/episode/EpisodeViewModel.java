@@ -17,9 +17,10 @@ import retrofit2.Response;
 
 public class EpisodeViewModel extends ViewModel {
 
-
     private EpisodeRepository episodeRepository = new EpisodeRepository();
+
     public int episodePage = 1;
+
     public MutableLiveData<RickAndMortyResponse<EpisodeModel>> getList (){
         return episodeRepository.getList(episodePage);
     }

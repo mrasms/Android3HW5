@@ -17,15 +17,15 @@ public class EpisodeRepository {
         MutableLiveData<RickAndMortyResponse<EpisodeModel>> mutableLiveData = new MutableLiveData<>();
         App.episodeApiService.fetchEpisodes(page).enqueue(new Callback<RickAndMortyResponse<EpisodeModel>>() {
             @Override
-            public void onResponse(@NonNull Call<RickAndMortyResponse<EpisodeModel>> call,
-                                   @NonNull Response<RickAndMortyResponse<EpisodeModel>> response) {
+            public void onResponse(Call<RickAndMortyResponse<EpisodeModel>> call,
+                                   Response<RickAndMortyResponse<EpisodeModel>> response) {
                 if (response.body() != null) {
                     mutableLiveData.setValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<RickAndMortyResponse<EpisodeModel>> call, @NonNull Throwable t) {
+            public void onFailure(Call<RickAndMortyResponse<EpisodeModel>> call, @NonNull Throwable t) {
                 mutableLiveData.setValue(null);
             }
         });
