@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.android3hw3.App;
+import com.example.android3hw3.data.repositories.CharacterRepository;
+import com.example.android3hw3.data.repositories.EpisodeRepository;
+import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.models.EpisodeModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 
@@ -14,20 +17,13 @@ import retrofit2.Response;
 
 public class EpisodeViewModel extends ViewModel {
 
-    public MutableLiveData<RickAndMortyResponse<EpisodeModel>> mutableLiveData = new MutableLiveData<>();
 
-    public void getList() {
-        App.episodeApiService.fetchEpisodes().enqueue(new Callback<RickAndMortyResponse<EpisodeModel>>() {
-            @Override
-            public void onResponse(@NonNull Call<RickAndMortyResponse<EpisodeModel>> call, @NonNull Response<RickAndMortyResponse<EpisodeModel>> response) {
-                mutableLiveData.setValue(response.body());
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<RickAndMortyResponse<EpisodeModel>> call, @NonNull Throwable t) {
-                mutableLiveData.setValue(null);
-            }
-        });
+    private EpisodeRepository episodeRepository = new EpisodeRepository();
+    public int episodePage = 1;
+    public MutableLiveData<RickAndMortyResponse<EpisodeModel>> getList (){
+        return episodeRepository.getList(episodePage);
     }
+
+
 
 }
