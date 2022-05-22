@@ -1,9 +1,12 @@
 package com.example.android3hw3.data.repositories;
 
+import android.widget.Toast;
+
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.android3hw3.App;
 import com.example.android3hw3.models.CharacterModel;
+import com.example.android3hw3.models.InfoModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 
 import retrofit2.Call;
@@ -18,7 +21,9 @@ public class CharacterRepository {
             @Override
             public void onResponse(Call<RickAndMortyResponse<CharacterModel>> call,
                                    Response<RickAndMortyResponse<CharacterModel>> response) {
-                mutableLiveData.setValue(response.body());
+                if (response.body() != null) {
+                    mutableLiveData.setValue(response.body());
+                }
             }
 
             @Override
