@@ -15,7 +15,7 @@ public class LocationRepository {
 
     public MutableLiveData<RickAndMortyResponse<LocationModel>> getList(int page) {
         MutableLiveData<RickAndMortyResponse<LocationModel>> mutableLiveData = new MutableLiveData<>();
-        App.locationApiService.fetchLocation(page).enqueue(new Callback<RickAndMortyResponse<LocationModel>>() {
+        App.locationApiService.fetchLocations(page).enqueue(new Callback<RickAndMortyResponse<LocationModel>>() {
             @Override
             public void onResponse(Call<RickAndMortyResponse<LocationModel>> call, @NonNull Response<RickAndMortyResponse<LocationModel>> response) {
                 if (response.body() != null) {

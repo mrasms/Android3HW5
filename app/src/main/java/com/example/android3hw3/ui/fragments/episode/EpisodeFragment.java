@@ -14,19 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.android3hw3.base.BaseFragment;
-import com.example.android3hw3.data.repositories.EpisodeRepository;
-import com.example.android3hw3.databinding.FragmentCharacterBinding;
 import com.example.android3hw3.databinding.FragmentEpisodeBinding;
 
-import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.models.EpisodeModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
-import com.example.android3hw3.ui.adapters.CharacterAdapter;
 import com.example.android3hw3.ui.adapters.EpisodeAdapter;
-import com.example.android3hw3.ui.fragments.character.CharacterViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -102,11 +96,6 @@ public class EpisodeFragment extends BaseFragment<FragmentEpisodeBinding> {
         ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
-    }
-
-    @Override
-    protected void setupRequest() {
-
     }
 
     @Override

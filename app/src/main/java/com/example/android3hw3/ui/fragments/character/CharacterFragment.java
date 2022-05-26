@@ -8,23 +8,22 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.android3hw3.base.BaseFragment;
 import com.example.android3hw3.databinding.FragmentCharacterBinding;
 import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 import com.example.android3hw3.ui.adapters.CharacterAdapter;
+import com.example.android3hw3.ui.adapters.OnCharacterItemClick;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
 
@@ -71,6 +70,18 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
                 }
             }
         });
+
+        characterAdapter.setOnItemClick(new OnCharacterItemClick() {
+
+            @Override
+            public void onItemClick(CharacterModel model) {
+                Navigation
+                        .findNavController(requireView())
+                        .navigate(CharacterFragmentDirections
+                                .actionCharacterFragmentToDetailCharacterFragment()
+                                .setPosition(model.getId()));
+            }
+        });
     }
 
     private void fetchCharacters() {
@@ -89,18 +100,14 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
                 }
             });
         } else
-            characterAdapter.submitList((List<CharacterModel>) characterViewModel.getList());
-
+            characterAdapter.submitList(characterViewModel.getCharacters());
+        //characterAdapter.submitList((List<CharacterModel>) characterViewModel.getList());
     }
 
     private boolean isNetwork() {
         ConnectivityManager connectivityManager = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
-    }
-
-    @Override
-    protected void setupRequest() {
     }
 
     @Override
@@ -123,6 +130,5 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
                 }
             }
         });
-
     }
 }

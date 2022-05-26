@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +15,8 @@ import com.example.android3hw3.databinding.ItemCharacterBinding;
 import com.example.android3hw3.models.CharacterModel;
 
 public class CharacterAdapter extends ListAdapter<CharacterModel, CharacterAdapter.ViewHolder> {
+
+    private OnCharacterItemClick onCharacterItemClick;
 
     public CharacterAdapter(@NonNull DiffUtil.ItemCallback<CharacterModel> diffCallback) {
         super(diffCallback);
@@ -29,8 +30,12 @@ public class CharacterAdapter extends ListAdapter<CharacterModel, CharacterAdapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder (@NonNull ViewHolder holder, int position)  {
         holder.onBind(getItem(position));
+        }
+
+    public void setOnItemClick(OnCharacterItemClick onCharacterItemClick) {
+        this.onCharacterItemClick = onCharacterItemClick;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -45,6 +50,12 @@ public class CharacterAdapter extends ListAdapter<CharacterModel, CharacterAdapt
         public void onBind(CharacterModel model) {
             Glide.with(binding.characterImage).load(model.getImage()).into(binding.characterImage);
             binding.tvCharacterName.setText(model.getName());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onCharacterItemClick.onItemClick(model);
+                }
+            });
         }
     }
 

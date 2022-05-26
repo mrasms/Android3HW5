@@ -9,6 +9,8 @@ import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.models.InfoModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -22,6 +24,7 @@ public class CharacterRepository {
             public void onResponse(Call<RickAndMortyResponse<CharacterModel>> call,
                                    Response<RickAndMortyResponse<CharacterModel>> response) {
                 if (response.body() != null) {
+                    App.characterDao.insertAll(response.body().getResults());
                     mutableLiveData.setValue(response.body());
                 }
             }
@@ -32,5 +35,29 @@ public class CharacterRepository {
             }
         });
         return mutableLiveData;
+    }
+
+    public ArrayList<CharacterModel> getCharacters(){
+        ArrayList<CharacterModel> list = new ArrayList<>();
+        list.addAll(App.characterDao.getAll());
+        return list;
+    }
+
+    public MutableLiveData<CharacterModel> fetchCharacterId(int id) {
+        MutableLiveData<CharacterModel> mutableLiveDataID = new MutableLiveData<>();
+        App.characterApiService.fetchCharacter(id).enqueue(new Callback<CharacterModel>() {
+            @Override
+            public void onResponse(Call<CharacterModel> call, Response<CharacterModel> response) {
+                if (response.body() != null) {
+                    mutableLiveDataID.setValue(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CharacterModel> call, Throwable t) {
+                mutableLiveDataID.setValue(null);
+            }
+        });
+        return mutableLiveDataID;
     }
 }

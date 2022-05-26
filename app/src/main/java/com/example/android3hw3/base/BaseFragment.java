@@ -16,7 +16,6 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setupViews();
-        setupRequest();
         setupObserve();
         setupListener();
         
@@ -25,8 +24,6 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
     protected void setupViews() {
     }
 
-    protected void setupRequest() {
-    }
 
     protected void setupObserve() {
     }

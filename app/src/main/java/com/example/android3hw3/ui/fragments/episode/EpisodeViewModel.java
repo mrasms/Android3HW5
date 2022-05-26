@@ -11,6 +11,8 @@ import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.models.EpisodeModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +26,7 @@ public class EpisodeViewModel extends ViewModel {
     public MutableLiveData<RickAndMortyResponse<EpisodeModel>> getList (){
         return episodeRepository.getList(episodePage);
     }
+    public ArrayList <EpisodeModel> episodeModelArrayList = new ArrayList<>();
 
 
 

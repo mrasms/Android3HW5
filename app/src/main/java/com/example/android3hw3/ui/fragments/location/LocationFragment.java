@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,12 +40,15 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
     private boolean loading = true;
     private int postVisible, visibleCount, totalCount;
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLocationBinding.inflate(inflater, container, false);
         locationViewModel = new ViewModelProvider(requireActivity()).get(LocationViewModel.class);
         return binding.getRoot();
+
     }
 
     @Override
@@ -52,7 +56,7 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
         linearLayoutManager = new LinearLayoutManager(requireContext());
         binding.locationRecView.setLayoutManager(linearLayoutManager);
         binding.locationRecView.setAdapter(locationAdapter);
-    }
+       }
 
     @Override
     protected void setupListener() {
@@ -104,14 +108,11 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
         return networkInfo != null && networkInfo.isConnected();
     }
 
-    @Override
-    protected void setupRequest() {
-    }
+
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        locationViewModel.locationPage =1;
         loading = true;
         binding = null;
     }
@@ -119,6 +120,7 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
     @Override
     public void onResume() {
         super.onResume();
+
         locationViewModel.getList().observe(getViewLifecycleOwner(), new Observer<RickAndMortyResponse<LocationModel>>() {
             @Override
             public void onChanged(RickAndMortyResponse<LocationModel> locationModelRickAndMortyResponse) {

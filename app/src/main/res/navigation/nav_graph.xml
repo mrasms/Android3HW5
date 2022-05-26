@@ -9,19 +9,53 @@
         android:id="@+id/characterFragment"
         android:name="com.example.android3hw3.ui.fragments.character.CharacterFragment"
         android:label="Character"
-        tools:layout="@layout/fragment_character" />
+        tools:layout="@layout/fragment_character">
+        <action
+            android:id="@+id/action_characterFragment_to_detailCharacterFragment"
+            app:destination="@id/detailCharacterFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/episodeFragment"
         android:name="com.example.android3hw3.ui.fragments.episode.EpisodeFragment"
         android:label="Episode"
-        tools:layout="@layout/fragment_episode" />
+        tools:layout="@layout/fragment_episode">
+        <action
+            android:id="@+id/action_episodeFragment_to_detailEpisodeFragment"
+            app:destination="@id/detailEpisodeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/locationFragment"
         android:name="com.example.android3hw3.ui.fragments.location.LocationFragment"
         android:label="Location"
-        tools:layout="@layout/fragment_location" />
+        tools:layout="@layout/fragment_location">
+        <action
+            android:id="@+id/action_locationFragment_to_detailLocationFragment"
+            app:destination="@id/detailLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailCharacterFragment"
+        android:name="com.example.android3hw3.ui.fragments.character.detail.DetailCharacterFragment"
+        android:label="fragment_detail_character"
+        tools:layout="@layout/fragment_detail_character" >
+        <argument
+            android:name="position"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/detailEpisodeFragment"
+        android:name="com.example.android3hw3.ui.fragments.episode.detail.DetailEpisodeFragment"
+        android:label="fragment_detail_episode"
+        tools:layout="@layout/fragment_detail_episode" />
+    <fragment
+        android:id="@+id/detailLocationFragment"
+        android:name="com.example.android3hw3.ui.fragments.location.detail.DetailLocationFragment"
+        android:label="fragment_detail_location"
+        tools:layout="@layout/fragment_detail_location" />
 
 
 </navigation>

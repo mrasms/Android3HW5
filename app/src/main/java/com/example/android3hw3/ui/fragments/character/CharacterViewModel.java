@@ -3,18 +3,15 @@ package com.example.android3hw3.ui.fragments.character;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.android3hw3.App;
 import com.example.android3hw3.data.repositories.CharacterRepository;
 import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import java.util.ArrayList;
 
 public class CharacterViewModel extends ViewModel {
 
-    private CharacterRepository characterRepository = new CharacterRepository();
+    private final CharacterRepository characterRepository = new CharacterRepository();
 
     public int characterPage = 1;
 
@@ -22,4 +19,11 @@ public class CharacterViewModel extends ViewModel {
         return characterRepository.getList(characterPage);
     }
 
+    public MutableLiveData<CharacterModel> fetchCharacterId(int id) {
+        return characterRepository.fetchCharacterId(id);
+    }
+
+    public ArrayList<CharacterModel> getCharacters(){
+        return characterRepository.getCharacters();
+    }
 }

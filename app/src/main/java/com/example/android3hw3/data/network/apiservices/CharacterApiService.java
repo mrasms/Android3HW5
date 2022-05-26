@@ -5,6 +5,7 @@ import com.example.android3hw3.models.RickAndMortyResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface CharacterApiService {
@@ -13,4 +14,8 @@ public interface CharacterApiService {
     Call<RickAndMortyResponse<CharacterModel>> fetchCharacters(
             @Query("page") int page
     );
+
+    @GET("api/character/{id}")
+    Call<CharacterModel> fetchCharacter(
+            @Path("id") int id);
 }

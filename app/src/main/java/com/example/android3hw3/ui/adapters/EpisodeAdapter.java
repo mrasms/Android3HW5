@@ -6,18 +6,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.example.android3hw3.databinding.ItemCharacterBinding;
 import com.example.android3hw3.databinding.ItemEpisodeBinding;
-import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.models.EpisodeModel;
 
 public class EpisodeAdapter extends ListAdapter<EpisodeModel, EpisodeAdapter.ViewHolder> {
+
+    private OnEpisodeItemClick onEpisodeItemClick;
 
     public EpisodeAdapter(@NonNull DiffUtil.ItemCallback<EpisodeModel> diffCallback) {
         super(diffCallback);
@@ -35,6 +33,12 @@ public class EpisodeAdapter extends ListAdapter<EpisodeModel, EpisodeAdapter.Vie
         holder.onBind(getItem(position));
     }
 
+    public void setOnEpisodeItemClick(OnEpisodeItemClick onEpisodeItemClick) {
+        this.onEpisodeItemClick = onEpisodeItemClick;
+    }
+
+
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ItemEpisodeBinding binding;
@@ -47,6 +51,12 @@ public class EpisodeAdapter extends ListAdapter<EpisodeModel, EpisodeAdapter.Vie
         public void onBind(EpisodeModel model) {
             binding.tvEpisodeName.setText(model.getName());
             binding.tvEpisodeAirDate.setText(model.getAirDate());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onEpisodeItemClick.onItemClick(model);
+                }
+            });
         }
     }
     public static DiffUtil.ItemCallback<EpisodeModel> diffCallBack = new DiffUtil.ItemCallback<EpisodeModel>() {
