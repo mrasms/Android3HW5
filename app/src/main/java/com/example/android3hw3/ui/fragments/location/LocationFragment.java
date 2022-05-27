@@ -6,27 +6,22 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.example.android3hw3.R;
 import com.example.android3hw3.base.BaseFragment;
-import com.example.android3hw3.databinding.FragmentCharacterBinding;
 import com.example.android3hw3.databinding.FragmentLocationBinding;
-import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.models.LocationModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 import com.example.android3hw3.ui.adapters.LocationAdapter;
-import com.example.android3hw3.ui.fragments.character.CharacterViewModel;
+import com.example.android3hw3.ui.adapters.clickers.OnLocationItemClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +75,13 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
                 }
             }
         });
+        locationAdapter.setOnLocationItemClick(new OnLocationItemClick() {
+            @Override
+            public void onItemClick(LocationModel model) {
+                Navigation.findNavController(requireView())
+                        .navigate(LocationFragmentDirections.actionLocationFragmentToDetailLocationFragment().setPosition(model.getId()));
+            }
+        });
     }
 
     private void fetchLocation() {
@@ -99,7 +101,7 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
                 }
             });
         } else
-            locationAdapter.submitList((List<LocationModel>) locationViewModel.getList());
+            locationAdapter.submitList(locationViewModel.getLocation());
     }
 
     private boolean isNetwork() {
@@ -113,6 +115,7 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        locationViewModel.locationPage = 1;
         loading = true;
         binding = null;
     }

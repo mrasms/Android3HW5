@@ -21,7 +21,7 @@ import com.example.android3hw3.databinding.FragmentCharacterBinding;
 import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 import com.example.android3hw3.ui.adapters.CharacterAdapter;
-import com.example.android3hw3.ui.adapters.OnCharacterItemClick;
+import com.example.android3hw3.ui.adapters.clickers.OnCharacterItemClick;
 
 import java.util.ArrayList;
 
@@ -62,7 +62,6 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
                         if (characterViewModel.characterPage != totalCount && (characterViewModel.characterPage < totalCount)) {
                             characterViewModel.characterPage++;
                             if (!loading && (characterViewModel.characterPage < totalCount)) {
-
                                 fetchCharacters();
                             }
                         }
@@ -72,7 +71,6 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
         });
 
         characterAdapter.setOnItemClick(new OnCharacterItemClick() {
-
             @Override
             public void onItemClick(CharacterModel model) {
                 Navigation
@@ -101,7 +99,6 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
             });
         } else
             characterAdapter.submitList(characterViewModel.getCharacters());
-        //characterAdapter.submitList((List<CharacterModel>) characterViewModel.getList());
     }
 
     private boolean isNetwork() {

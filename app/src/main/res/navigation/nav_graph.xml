@@ -34,28 +34,38 @@
             android:id="@+id/action_locationFragment_to_detailLocationFragment"
             app:destination="@id/detailLocationFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/detailCharacterFragment"
         android:name="com.example.android3hw3.ui.fragments.character.detail.DetailCharacterFragment"
-        android:label="fragment_detail_character"
-        tools:layout="@layout/fragment_detail_character" >
+        android:label="Detail character"
+        tools:layout="@layout/fragment_detail_character">
         <argument
             android:name="position"
-            app:argType="integer"
-            android:defaultValue="1" />
+            android:defaultValue="1"
+            app:argType="integer" />
     </fragment>
-
 
     <fragment
         android:id="@+id/detailEpisodeFragment"
         android:name="com.example.android3hw3.ui.fragments.episode.detail.DetailEpisodeFragment"
-        android:label="fragment_detail_episode"
-        tools:layout="@layout/fragment_detail_episode" />
+        android:label="Detail episode"
+        tools:layout="@layout/fragment_detail_episode">
+        <argument
+            android:name="position"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
+
     <fragment
         android:id="@+id/detailLocationFragment"
         android:name="com.example.android3hw3.ui.fragments.location.detail.DetailLocationFragment"
-        android:label="fragment_detail_location"
-        tools:layout="@layout/fragment_detail_location" />
-
+        android:label="Detail location"
+        tools:layout="@layout/fragment_detail_location">
+        <argument
+            android:name="position"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

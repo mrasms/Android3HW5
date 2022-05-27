@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.android3hw3.databinding.ItemCharacterBinding;
 import com.example.android3hw3.models.CharacterModel;
+import com.example.android3hw3.ui.adapters.clickers.OnCharacterItemClick;
 
 public class CharacterAdapter extends ListAdapter<CharacterModel, CharacterAdapter.ViewHolder> {
 

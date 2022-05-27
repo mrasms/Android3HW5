@@ -22,7 +22,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:isScrollContainer="true"
-        android:text="Character name"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/character_image"

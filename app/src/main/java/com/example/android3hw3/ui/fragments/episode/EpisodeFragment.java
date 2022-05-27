@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +22,7 @@ import com.example.android3hw3.databinding.FragmentEpisodeBinding;
 import com.example.android3hw3.models.EpisodeModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 import com.example.android3hw3.ui.adapters.EpisodeAdapter;
+import com.example.android3hw3.ui.adapters.clickers.OnEpisodeItemClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +72,13 @@ public class EpisodeFragment extends BaseFragment<FragmentEpisodeBinding> {
                 }
             }
         });
+        episodeAdapter.setOnEpisodeItemClick(new OnEpisodeItemClick() {
+            @Override
+            public void onItemClick(EpisodeModel model) {
+                Navigation.findNavController(requireView())
+                        .navigate(EpisodeFragmentDirections.actionEpisodeFragmentToDetailEpisodeFragment().setPosition(model.getId()));
+            }
+        });
     }
 
     private void fetchEpisodes() {
@@ -88,7 +97,7 @@ public class EpisodeFragment extends BaseFragment<FragmentEpisodeBinding> {
                 }
             });
         } else
-            episodeAdapter.submitList((List<EpisodeModel>) episodeViewModel.getList());
+            episodeAdapter.submitList(episodeViewModel.getEpisode());
 
     }
 

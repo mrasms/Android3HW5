@@ -11,6 +11,8 @@ import com.example.android3hw3.models.EpisodeModel;
 import com.example.android3hw3.models.LocationModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 
+import java.util.ArrayList;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +26,15 @@ public class LocationViewModel extends ViewModel {
     public MutableLiveData<RickAndMortyResponse<LocationModel>> getList() {
         return locationRepository.getList(locationPage);
     }
+
+    public MutableLiveData<LocationModel> fetchlocationId(int id) {
+        return locationRepository.fetchEpisodeId(id);
+    }
+
+    public ArrayList<LocationModel> getLocation() {
+        return locationRepository.getLocation();
+    }
+
 
 
 }

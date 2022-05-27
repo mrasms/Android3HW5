@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.android3hw3.databinding.ItemEpisodeBinding;
 import com.example.android3hw3.databinding.ItemLocationBinding;
-import com.example.android3hw3.models.CharacterModel;
-import com.example.android3hw3.models.EpisodeModel;
 import com.example.android3hw3.models.LocationModel;
+import com.example.android3hw3.ui.adapters.clickers.OnLocationItemClick;
 
 public class LocationAdapter extends ListAdapter<LocationModel, LocationAdapter.ViewHolder> {
+
+        private OnLocationItemClick onLocationItemClick;
 
         public LocationAdapter(@NonNull DiffUtil.ItemCallback<LocationModel> diffCallback) {
         super(diffCallback);
@@ -34,6 +34,10 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationAdapter.
         holder.onBind(getItem(position));
     }
 
+    public void setOnLocationItemClick(OnLocationItemClick onLocationItemClick) {
+        this.onLocationItemClick = onLocationItemClick;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ItemLocationBinding binding;
@@ -47,6 +51,12 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationAdapter.
             binding.tvLocationName.setText(model.getName());
             binding.tvLocationType.setText(model.getType());
             binding.tvLocationDimension.setText(model.getDimension());
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onLocationItemClick.onItemClick(model);
+                }
+            });
         }
     }
 
