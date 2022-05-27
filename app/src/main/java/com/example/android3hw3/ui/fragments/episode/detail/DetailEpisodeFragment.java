@@ -20,7 +20,6 @@ import com.example.android3hw3.ui.fragments.character.detail.DetailCharacterFrag
 import com.example.android3hw3.ui.fragments.episode.EpisodeViewModel;
 
 public class DetailEpisodeFragment extends Fragment {
-
     private FragmentDetailEpisodeBinding binding;
     private EpisodeViewModel episodeViewModel;
 
@@ -35,6 +34,10 @@ public class DetailEpisodeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setupData();
+    }
+
+    private void setupData() {
         int args = DetailEpisodeFragmentArgs.fromBundle(getArguments()).getPosition();
         episodeViewModel.fetchEpisodeId(args).observe(getViewLifecycleOwner(), new Observer<EpisodeModel>() {
             @Override
