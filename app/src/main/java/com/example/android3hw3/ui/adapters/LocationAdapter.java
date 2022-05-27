@@ -15,10 +15,9 @@ import com.example.android3hw3.models.LocationModel;
 import com.example.android3hw3.ui.adapters.clickers.OnLocationItemClick;
 
 public class LocationAdapter extends ListAdapter<LocationModel, LocationAdapter.ViewHolder> {
+    private OnLocationItemClick onLocationItemClick;
 
-        private OnLocationItemClick onLocationItemClick;
-
-        public LocationAdapter(@NonNull DiffUtil.ItemCallback<LocationModel> diffCallback) {
+    public LocationAdapter(@NonNull DiffUtil.ItemCallback<LocationModel> diffCallback) {
         super(diffCallback);
     }
 
@@ -39,7 +38,6 @@ public class LocationAdapter extends ListAdapter<LocationModel, LocationAdapter.
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         private ItemLocationBinding binding;
 
         public ViewHolder(@NonNull ItemLocationBinding binding) {

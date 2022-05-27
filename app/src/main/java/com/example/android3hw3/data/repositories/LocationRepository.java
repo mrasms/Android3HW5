@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.android3hw3.App;
-import com.example.android3hw3.models.EpisodeModel;
 import com.example.android3hw3.models.LocationModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 
@@ -35,7 +34,7 @@ public class LocationRepository {
         return mutableLiveData;
     }
 
-    public ArrayList<LocationModel> getLocation(){
+    public ArrayList<LocationModel> getLocation() {
         ArrayList<LocationModel> list = new ArrayList<>();
         list.addAll(App.locationDao.getAll());
         return list;

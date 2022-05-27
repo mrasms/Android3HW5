@@ -12,11 +12,10 @@ import java.util.List;
 
 @Dao
 public interface CharacterDao {
+    @Query("SELECT * FROM characterModel")
+    List<CharacterModel> getAll();
 
-@Query("SELECT * FROM characterModel")
-List<CharacterModel> getAll();
-
-@Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(ArrayList<CharacterModel> characterModels);
 
 }

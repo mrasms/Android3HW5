@@ -5,7 +5,6 @@
     android:layout_height="wrap_content"
     android:padding="12dp">
 
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,6 +38,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/character_image"
                 app:layout_constraintLeft_toRightOf="@id/character_image"
                 app:layout_constraintTop_toTopOf="@id/character_image" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

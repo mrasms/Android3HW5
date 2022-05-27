@@ -16,7 +16,6 @@ import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.ui.adapters.clickers.OnCharacterItemClick;
 
 public class CharacterAdapter extends ListAdapter<CharacterModel, CharacterAdapter.ViewHolder> {
-
     private OnCharacterItemClick onCharacterItemClick;
 
     public CharacterAdapter(@NonNull DiffUtil.ItemCallback<CharacterModel> diffCallback) {
@@ -31,9 +30,9 @@ public class CharacterAdapter extends ListAdapter<CharacterModel, CharacterAdapt
     }
 
     @Override
-    public void onBindViewHolder (@NonNull ViewHolder holder, int position)  {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.onBind(getItem(position));
-        }
+    }
 
     public void setOnItemClick(OnCharacterItemClick onCharacterItemClick) {
         this.onCharacterItemClick = onCharacterItemClick;

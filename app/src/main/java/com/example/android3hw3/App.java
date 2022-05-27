@@ -12,7 +12,6 @@ import com.example.android3hw3.data.network.apiservices.EpisodeApiService;
 import com.example.android3hw3.data.network.apiservices.LocationApiService;
 
 public class App extends Application {
-
     public static CharacterApiService characterApiService;
     public static EpisodeApiService episodeApiService;
     public static LocationApiService locationApiService;

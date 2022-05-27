@@ -13,7 +13,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-
     private OkHttpClient okHttpClient = new OkHttpClient()
             .newBuilder()
             .addInterceptor(interceptor())
@@ -22,9 +21,10 @@ public class RetrofitClient {
             .writeTimeout(30, TimeUnit.SECONDS)
             .build();
 
-    private HttpLoggingInterceptor interceptor (){
+    private HttpLoggingInterceptor interceptor() {
         return new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
     }
+
     private Retrofit retrofit = new Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl("https://rickandmortyapi.com/")

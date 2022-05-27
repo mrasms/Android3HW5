@@ -73,11 +73,13 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
         characterAdapter.setOnItemClick(new OnCharacterItemClick() {
             @Override
             public void onItemClick(CharacterModel model) {
-                Navigation
-                        .findNavController(requireView())
-                        .navigate(CharacterFragmentDirections
-                                .actionCharacterFragmentToDetailCharacterFragment()
-                                .setPosition(model.getId()));
+                if (isNetwork()) {
+                    Navigation
+                            .findNavController(requireView())
+                            .navigate(CharacterFragmentDirections
+                                    .actionCharacterFragmentToDetailCharacterFragment()
+                                    .setPosition(model.getId()));
+                }
             }
         });
     }

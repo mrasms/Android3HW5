@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.example.android3hw3.R;
 import com.example.android3hw3.databinding.FragmentDetailCharacterBinding;
 import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.ui.fragments.character.CharacterViewModel;

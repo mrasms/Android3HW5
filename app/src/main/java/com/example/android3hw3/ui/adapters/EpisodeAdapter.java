@@ -15,7 +15,6 @@ import com.example.android3hw3.models.EpisodeModel;
 import com.example.android3hw3.ui.adapters.clickers.OnEpisodeItemClick;
 
 public class EpisodeAdapter extends ListAdapter<EpisodeModel, EpisodeAdapter.ViewHolder> {
-
     private OnEpisodeItemClick onEpisodeItemClick;
 
     public EpisodeAdapter(@NonNull DiffUtil.ItemCallback<EpisodeModel> diffCallback) {
@@ -38,10 +37,7 @@ public class EpisodeAdapter extends ListAdapter<EpisodeModel, EpisodeAdapter.Vie
         this.onEpisodeItemClick = onEpisodeItemClick;
     }
 
-
-
     public class ViewHolder extends RecyclerView.ViewHolder {
-
         private ItemEpisodeBinding binding;
 
         public ViewHolder(@NonNull ItemEpisodeBinding binding) {
@@ -60,6 +56,7 @@ public class EpisodeAdapter extends ListAdapter<EpisodeModel, EpisodeAdapter.Vie
             });
         }
     }
+
     public static DiffUtil.ItemCallback<EpisodeModel> diffCallBack = new DiffUtil.ItemCallback<EpisodeModel>() {
         @Override
         public boolean areItemsTheSame(@NonNull EpisodeModel oldItem, @NonNull EpisodeModel newItem) {

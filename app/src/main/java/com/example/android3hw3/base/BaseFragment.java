@@ -18,12 +18,11 @@ public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
         setupViews();
         setupObserve();
         setupListener();
-        
+
     }
 
     protected void setupViews() {
     }
-
 
     protected void setupObserve() {
     }

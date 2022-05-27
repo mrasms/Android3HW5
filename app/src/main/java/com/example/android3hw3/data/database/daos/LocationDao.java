@@ -13,7 +13,6 @@ import java.util.List;
 
 @Dao
 public interface LocationDao {
-
     @Query("SELECT * FROM location_model")
     List<LocationModel> getAll();
 

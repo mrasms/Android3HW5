@@ -12,11 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.android3hw3.R;
 import com.example.android3hw3.databinding.FragmentDetailEpisodeBinding;
 import com.example.android3hw3.models.EpisodeModel;
-import com.example.android3hw3.ui.fragments.character.CharacterViewModel;
-import com.example.android3hw3.ui.fragments.character.detail.DetailCharacterFragmentArgs;
 import com.example.android3hw3.ui.fragments.episode.EpisodeViewModel;
 
 public class DetailEpisodeFragment extends Fragment {

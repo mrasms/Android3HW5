@@ -8,7 +8,6 @@ import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "characterModel")
 public class CharacterModel {
 
-
     @PrimaryKey(autoGenerate = true)
     @SerializedName("id")
     private int id;
@@ -18,12 +17,6 @@ public class CharacterModel {
 
     @SerializedName("image")
     private String image;
-
-    @SerializedName("status")
-    private String status;
-
-    @SerializedName("gender")
-    private String gender;
 
     public int getId() {
         return id;
@@ -37,14 +30,6 @@ public class CharacterModel {
         return image;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -55,13 +40,5 @@ public class CharacterModel {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 }

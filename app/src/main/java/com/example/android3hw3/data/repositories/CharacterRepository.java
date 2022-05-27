@@ -1,12 +1,10 @@
 package com.example.android3hw3.data.repositories;
 
-import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.android3hw3.App;
 import com.example.android3hw3.models.CharacterModel;
-import com.example.android3hw3.models.InfoModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 
 import java.util.ArrayList;
@@ -37,7 +35,7 @@ public class CharacterRepository {
         return mutableLiveData;
     }
 
-    public ArrayList<CharacterModel> getCharacters(){
+    public ArrayList<CharacterModel> getCharacters() {
         ArrayList<CharacterModel> list = new ArrayList<>();
         list.addAll(App.characterDao.getAll());
         return list;

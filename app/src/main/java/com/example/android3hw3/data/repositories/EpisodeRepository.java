@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.android3hw3.App;
-import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.models.EpisodeModel;
 import com.example.android3hw3.models.RickAndMortyResponse;
 
@@ -36,7 +35,7 @@ public class EpisodeRepository {
         return mutableLiveData;
     }
 
-    public ArrayList<EpisodeModel> getEpisode(){
+    public ArrayList<EpisodeModel> getEpisode() {
         ArrayList<EpisodeModel> list = new ArrayList<>();
         list.addAll(App.episodeDao.getAll());
         return list;
