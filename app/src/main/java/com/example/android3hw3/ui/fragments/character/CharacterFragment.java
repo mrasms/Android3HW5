@@ -97,8 +97,7 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
                     }
                 }
             });
-        } else
-            characterAdapter.submitList(characterViewModel.getCharacters());
+        } else characterAdapter.submitList(characterViewModel.getCharacters());
     }
 
     private boolean isNetwork() {
@@ -116,16 +115,18 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
     @Override
     public void onResume() {
         super.onResume();
-        characterViewModel.getList().observe(getViewLifecycleOwner(), new Observer<RickAndMortyResponse<CharacterModel>>() {
-            @Override
-            public void onChanged(RickAndMortyResponse<CharacterModel> characterModelRickAndMortyResponse) {
-                if (loading) {
-                    ArrayList<CharacterModel> list = new ArrayList<>(characterAdapter.getCurrentList());
-                    list.addAll(characterModelRickAndMortyResponse.getResults());
-                    characterAdapter.submitList(list);
-                    loading = false;
+        if (isNetwork()) {
+            characterViewModel.getList().observe(getViewLifecycleOwner(), new Observer<RickAndMortyResponse<CharacterModel>>() {
+                @Override
+                public void onChanged(RickAndMortyResponse<CharacterModel> characterModelRickAndMortyResponse) {
+                    if (loading) {
+                        ArrayList<CharacterModel> list = new ArrayList<>(characterAdapter.getCurrentList());
+                        list.addAll(characterModelRickAndMortyResponse.getResults());
+                        characterAdapter.submitList(list);
+                        loading = false;
+                    } else characterAdapter.submitList(characterViewModel.getCharacters());
                 }
-            }
-        });
+            });
+        } else characterAdapter.submitList(characterViewModel.getCharacters());
     }
 }

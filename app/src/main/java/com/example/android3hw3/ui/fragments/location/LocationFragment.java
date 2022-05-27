@@ -24,18 +24,14 @@ import com.example.android3hw3.ui.adapters.LocationAdapter;
 import com.example.android3hw3.ui.adapters.clickers.OnLocationItemClick;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
-
     private LocationAdapter locationAdapter = new LocationAdapter(LocationAdapter.diffCallBack);
     private LocationViewModel locationViewModel = new LocationViewModel();
     private LinearLayoutManager linearLayoutManager;
     private boolean loading = true;
     private int postVisible, visibleCount, totalCount;
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +39,6 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
         binding = FragmentLocationBinding.inflate(inflater, container, false);
         locationViewModel = new ViewModelProvider(requireActivity()).get(LocationViewModel.class);
         return binding.getRoot();
-
     }
 
     @Override
@@ -51,7 +46,7 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
         linearLayoutManager = new LinearLayoutManager(requireContext());
         binding.locationRecView.setLayoutManager(linearLayoutManager);
         binding.locationRecView.setAdapter(locationAdapter);
-       }
+    }
 
     @Override
     protected void setupListener() {
@@ -67,7 +62,6 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
                         if (locationViewModel.locationPage != totalCount && (locationViewModel.locationPage < totalCount)) {
                             locationViewModel.locationPage++;
                             if (!loading && (locationViewModel.locationPage < totalCount)) {
-
                                 fetchLocation();
                             }
                         }
@@ -97,11 +91,9 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
                             locationAdapter.submitList(list);
                         }
                     }
-
                 }
             });
-        } else
-            locationAdapter.submitList(locationViewModel.getLocation());
+        } else locationAdapter.submitList(locationViewModel.getLocation());
     }
 
     private boolean isNetwork() {
@@ -109,8 +101,6 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }
-
-
 
     @Override
     public void onDestroy() {
@@ -123,17 +113,18 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
     @Override
     public void onResume() {
         super.onResume();
-
-        locationViewModel.getList().observe(getViewLifecycleOwner(), new Observer<RickAndMortyResponse<LocationModel>>() {
-            @Override
-            public void onChanged(RickAndMortyResponse<LocationModel> locationModelRickAndMortyResponse) {
-                if (loading) {
-                    ArrayList<LocationModel> list = new ArrayList<>(locationAdapter.getCurrentList());
-                    list.addAll(locationModelRickAndMortyResponse.getResults());
-                    locationAdapter.submitList(list);
-                    loading = false;
+        if (isNetwork()) {
+            locationViewModel.getList().observe(getViewLifecycleOwner(), new Observer<RickAndMortyResponse<LocationModel>>() {
+                @Override
+                public void onChanged(RickAndMortyResponse<LocationModel> locationModelRickAndMortyResponse) {
+                    if (loading && isNetwork()) {
+                        ArrayList<LocationModel> list = new ArrayList<>(locationAdapter.getCurrentList());
+                        list.addAll(locationModelRickAndMortyResponse.getResults());
+                        locationAdapter.submitList(list);
+                        loading = false;
+                    } else locationAdapter.submitList(locationViewModel.getLocation());
                 }
-            }
-        });
+            });
+        } else locationAdapter.submitList(locationViewModel.getLocation());
     }
 }

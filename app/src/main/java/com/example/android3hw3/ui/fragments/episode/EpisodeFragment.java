@@ -25,7 +25,6 @@ import com.example.android3hw3.ui.adapters.EpisodeAdapter;
 import com.example.android3hw3.ui.adapters.clickers.OnEpisodeItemClick;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class EpisodeFragment extends BaseFragment<FragmentEpisodeBinding> {
 
@@ -118,16 +117,18 @@ public class EpisodeFragment extends BaseFragment<FragmentEpisodeBinding> {
     @Override
     public void onResume() {
         super.onResume();
-        episodeViewModel.getList().observe(getViewLifecycleOwner(), new Observer<RickAndMortyResponse<EpisodeModel>>() {
-            @Override
-            public void onChanged(RickAndMortyResponse<EpisodeModel> episodeModelRickAndMortyResponse) {
-                if (loading) {
-                    ArrayList<EpisodeModel> list = new ArrayList<>(episodeAdapter.getCurrentList());
-                    list.addAll(episodeModelRickAndMortyResponse.getResults());
-                    episodeAdapter.submitList(list);
-                    loading = false;
+        if (isNetwork()) {
+            episodeViewModel.getList().observe(getViewLifecycleOwner(), new Observer<RickAndMortyResponse<EpisodeModel>>() {
+                @Override
+                public void onChanged(RickAndMortyResponse<EpisodeModel> episodeModelRickAndMortyResponse) {
+                    if (loading) {
+                        ArrayList<EpisodeModel> list = new ArrayList<>(episodeAdapter.getCurrentList());
+                        list.addAll(episodeModelRickAndMortyResponse.getResults());
+                        episodeAdapter.submitList(list);
+                        loading = false;
+                    } else episodeAdapter.submitList(episodeViewModel.getEpisode());
                 }
-            }
-        });
+            });
+        } else episodeAdapter.submitList(episodeViewModel.getEpisode());
     }
 }
