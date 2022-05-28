@@ -26,14 +26,18 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         setupRetrofitClient();
+        setupRoomClient();
     }
 
     private void setupRetrofitClient() {
         retrofitClient = new RetrofitClient();
-        roomClient = new RoomClient();
         characterApiService = retrofitClient.provideCharacterApiService();
         episodeApiService = retrofitClient.provideEpisodeApiService();
         locationApiService = retrofitClient.provideLocationApiService();
+    }
+
+    private void setupRoomClient() {
+        roomClient = new RoomClient();
         characterDao = roomClient.provideCharacterDao(roomClient.provideRoom(this));
         episodeDao = roomClient.provideEpisodeDao(roomClient.provideRoom(this));
         locationDao = roomClient.provideLocationDao(roomClient.provideRoom(this));
