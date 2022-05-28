@@ -10,6 +10,7 @@ import com.example.android3hw3.models.RickAndMortyResponse;
 import java.util.ArrayList;
 
 public class EpisodeViewModel extends ViewModel {
+
     private EpisodeRepository episodeRepository = new EpisodeRepository();
     public int episodePage = 1;
 

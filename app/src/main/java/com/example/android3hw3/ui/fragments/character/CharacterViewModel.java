@@ -10,6 +10,7 @@ import com.example.android3hw3.models.RickAndMortyResponse;
 import java.util.ArrayList;
 
 public class CharacterViewModel extends ViewModel {
+
     private final CharacterRepository characterRepository = new CharacterRepository();
     public int characterPage = 1;
 

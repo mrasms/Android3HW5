@@ -12,6 +12,7 @@ import java.util.List;
 
 @Dao
 public interface EpisodeDao {
+
     @Query("SELECT * FROM episodeModel")
     List<EpisodeModel> getAll();
 

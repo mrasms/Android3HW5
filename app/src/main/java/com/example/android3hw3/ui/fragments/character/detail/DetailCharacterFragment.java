@@ -19,6 +19,7 @@ import com.example.android3hw3.ui.fragments.character.CharacterViewModel;
 
 
 public class DetailCharacterFragment extends Fragment {
+
     private FragmentDetailCharacterBinding binding;
     private CharacterViewModel characterViewModel;
 

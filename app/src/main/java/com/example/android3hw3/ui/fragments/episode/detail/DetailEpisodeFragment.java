@@ -17,6 +17,7 @@ import com.example.android3hw3.models.EpisodeModel;
 import com.example.android3hw3.ui.fragments.episode.EpisodeViewModel;
 
 public class DetailEpisodeFragment extends Fragment {
+
     private FragmentDetailEpisodeBinding binding;
     private EpisodeViewModel episodeViewModel;
 

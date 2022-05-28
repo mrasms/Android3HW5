@@ -15,6 +15,7 @@ import com.example.android3hw3.models.LocationModel;
 import com.example.android3hw3.ui.adapters.clickers.OnLocationItemClick;
 
 public class LocationAdapter extends ListAdapter<LocationModel, LocationAdapter.ViewHolder> {
+
     private OnLocationItemClick onLocationItemClick;
 
     public LocationAdapter(@NonNull DiffUtil.ItemCallback<LocationModel> diffCallback) {

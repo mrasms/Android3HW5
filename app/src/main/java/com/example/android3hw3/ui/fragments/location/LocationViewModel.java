@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 
 public class LocationViewModel extends ViewModel {
+
     private LocationRepository locationRepository = new LocationRepository();
     public int locationPage = 1;
 

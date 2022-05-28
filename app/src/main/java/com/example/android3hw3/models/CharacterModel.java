@@ -9,6 +9,7 @@ import com.google.gson.annotations.SerializedName;
 public class CharacterModel {
 
     @PrimaryKey(autoGenerate = true)
+
     @SerializedName("id")
     private int id;
 
