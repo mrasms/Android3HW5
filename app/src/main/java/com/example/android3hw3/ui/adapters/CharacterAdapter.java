@@ -16,6 +16,7 @@ import com.example.android3hw3.models.CharacterModel;
 import com.example.android3hw3.ui.adapters.clickers.OnCharacterItemClick;
 
 public class CharacterAdapter extends ListAdapter<CharacterModel, CharacterAdapter.ViewHolder> {
+
     private OnCharacterItemClick onCharacterItemClick;
 
     public CharacterAdapter(@NonNull DiffUtil.ItemCallback<CharacterModel> diffCallback) {

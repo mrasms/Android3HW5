@@ -12,6 +12,7 @@ import java.util.List;
 
 @Dao
 public interface CharacterDao {
+
     @Query("SELECT * FROM characterModel")
     List<CharacterModel> getAll();
 
