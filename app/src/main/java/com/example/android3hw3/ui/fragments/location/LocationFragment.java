@@ -27,6 +27,7 @@ import java.util.ArrayList;
 
 
 public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
+
     private LocationAdapter locationAdapter = new LocationAdapter(LocationAdapter.diffCallBack);
     private LocationViewModel locationViewModel = new LocationViewModel();
     private LinearLayoutManager linearLayoutManager;
@@ -103,8 +104,8 @@ public class LocationFragment extends BaseFragment<FragmentLocationBinding> {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         locationViewModel.locationPage = 1;
         loading = true;
         binding = null;

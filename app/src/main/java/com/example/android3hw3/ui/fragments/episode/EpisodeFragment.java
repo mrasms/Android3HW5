@@ -29,8 +29,8 @@ import java.util.ArrayList;
 public class EpisodeFragment extends BaseFragment<FragmentEpisodeBinding> {
 
     private EpisodeViewModel episodeViewModel;
-    private EpisodeAdapter episodeAdapter = new EpisodeAdapter(EpisodeAdapter.diffCallBack);
     private LinearLayoutManager linearLayoutManager;
+    private EpisodeAdapter episodeAdapter = new EpisodeAdapter(EpisodeAdapter.diffCallBack);
     private boolean loading = true;
     private int postVisible, visibleCount, totalCount;
 
@@ -63,7 +63,6 @@ public class EpisodeFragment extends BaseFragment<FragmentEpisodeBinding> {
                         if (episodeViewModel.episodePage != totalCount && (episodeViewModel.episodePage < totalCount)) {
                             episodeViewModel.episodePage++;
                             if (!loading && (episodeViewModel.episodePage < totalCount)) {
-
                                 fetchEpisodes();
                             }
                         }
@@ -75,7 +74,9 @@ public class EpisodeFragment extends BaseFragment<FragmentEpisodeBinding> {
             @Override
             public void onItemClick(EpisodeModel model) {
                 Navigation.findNavController(requireView())
-                        .navigate(EpisodeFragmentDirections.actionEpisodeFragmentToDetailEpisodeFragment().setPosition(model.getId()));
+                        .navigate(EpisodeFragmentDirections
+                                .actionEpisodeFragmentToDetailEpisodeFragment()
+                                .setPosition(model.getId()));
             }
         });
     }
@@ -95,9 +96,7 @@ public class EpisodeFragment extends BaseFragment<FragmentEpisodeBinding> {
                     }
                 }
             });
-        } else
-            episodeAdapter.submitList(episodeViewModel.getEpisode());
-
+        } else episodeAdapter.submitList(episodeViewModel.getEpisode());
     }
 
     private boolean isNetwork() {
@@ -107,8 +106,8 @@ public class EpisodeFragment extends BaseFragment<FragmentEpisodeBinding> {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         episodeViewModel.episodePage = 1;
         binding = null;
         loading = true;

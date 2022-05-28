@@ -109,8 +109,8 @@ public class CharacterFragment extends BaseFragment<FragmentCharacterBinding> {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDestroyView() {
+        super.onDestroyView();
         binding = null;
     }
 
